@@ -1,9 +1,6 @@
 # Infina AI Assignment
 
 This repository contains my end-to-end solutions for the three-part Infina AI take-home assignment.
-
-![Architecture Diagram](architecture-diagram.png)
-
 ---
 
 ## Contents
