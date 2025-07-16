@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Echo Canceller Demo</title>
+</head>
+
+<body>
+    <h2>Echo Canceller – Mic + System Audio</h2>
+    <button id="start">Start Capture</button>
+
+    <script>
+        document.getElementById('start').onclick = async () => {
+            const ctx = new AudioContext();
+            await ctx.audioWorklet.addModule('worklet/echo-canceller.worklet.js');
+
+            const sysStream = await navigator.mediaDevices.getDisplayMedia({ audio: true });
+            const micStream = await navigator.mediaDevices.getUserMedia({
+                audio: { echoCancellation: true, noiseSuppression: true }
+            });
+
+            const sysSrc = ctx.createMediaStreamSource(sysStream);
+            const micSrc = ctx.createMediaStreamSource(micStream);
+            const echoNode = new AudioWorkletNode(ctx, 'echo-canceller', {
+                numberOfInputs: 2, numberOfOutputs: 1, outputChannelCount: [1]
+            });
+
+            sysSrc.connect(echoNode, 0, 0);
+            micSrc.connect(echoNode, 0, 1);
+            echoNode.connect(ctx.destination);
+        };
+    </script>
+</body>
+
+</html>

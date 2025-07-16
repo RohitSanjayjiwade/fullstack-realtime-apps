@@ -1,0 +1,16 @@
+{
+  "name": "electron-system-audio",
+  "version": "1.0.0",
+  "main": "main.js",
+  "description": "System audio-only recorder using Electron and Swift",
+  "scripts": {
+    "build:swift": "swiftc ../swift/SystemAudioCapture.swift -o ../swift/system_audio_capture",
+    "start": "npm run build:swift && electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^26.6.10"
+  }
+}

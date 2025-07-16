@@ -1,0 +1,14 @@
+{
+  "name": "calendar-integration",
+  "version": "1.0.0",
+  "main": "calendarWebhook.js",
+  "scripts": {
+    "start": "node calendarWebhook.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "googleapis": "^131.0.0"
+  }
+}
